@@ -23,4 +23,15 @@ class ExpenseTrackerRepository(
         expenseTrackerDatabase.getTransactionDao().deleteTransaction(item)
 
     fun getTransaction() = expenseTrackerDatabase.getTransactionDao().getTransactions()
+
+    fun getLastFiveCategories() =
+        expenseTrackerDatabase.getTransactionDao().getLastFiveCategories()
+
+    fun getLastFiveTransactions() =
+        expenseTrackerDatabase.getTransactionDao().getLastFiveTransactions()
+
+    fun getIncomeSum() = expenseTrackerDatabase.getTransactionDao().getIncomeSum()
+
+    fun getExpenseSum() = expenseTrackerDatabase.getTransactionDao().getExpenseSum()
+
 }

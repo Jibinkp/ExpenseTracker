@@ -18,8 +18,11 @@ interface TransactionDao {
     @Delete
     suspend fun deleteCategory(item: CategoryItem)
 
-    @Query("SELECT * FROM categories ORDER BY id ASC")
+    @Query("SELECT * FROM categories ORDER BY id DESC")
     fun getCategories(): LiveData<List<CategoryItem>>
+
+    @Query("SELECT * FROM categories ORDER BY id DESC LIMIT 5")
+    fun getLastFiveCategories(): LiveData<List<CategoryItem>>
 
     // ---- Transaction ----
     @Upsert
@@ -28,8 +31,17 @@ interface TransactionDao {
     @Delete
     suspend fun deleteTransaction(item: TransactionsItem)
 
-    @Query("SELECT * FROM transactions ORDER BY id ASC")
+    @Query("SELECT * FROM transactions ORDER BY id DESC")
     fun getTransactions(): LiveData<List<TransactionsItem>>
+
+    @Query("SELECT * FROM transactions ORDER BY id DESC LIMIT 5")
+    fun getLastFiveTransactions(): LiveData<List<TransactionsItem>>
+
+    @Query("SELECT SUM(amount) FROM transactions WHERE type = 'Income'")
+    fun getIncomeSum(): LiveData<Double>
+
+    @Query("SELECT SUM(amount) FROM transactions WHERE type = 'Expense'")
+    fun getExpenseSum(): LiveData<Double>
 
 
 }
