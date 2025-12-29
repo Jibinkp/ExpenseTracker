@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ExpenseTracker">
         <activity
+            android:name=".ui.transaction.TransactionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.category.CategoryActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.home.MainActivity"
             android:exported="true">
             <intent-filter>

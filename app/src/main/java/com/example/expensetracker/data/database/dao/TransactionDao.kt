@@ -38,10 +38,10 @@ interface TransactionDao {
     fun getLastFiveTransactions(): LiveData<List<TransactionsItem>>
 
     @Query("SELECT SUM(amount) FROM transactions WHERE type = 'Income'")
-    fun getIncomeSum(): LiveData<Double>
+    fun getIncomeSum(): LiveData<Double?>
 
     @Query("SELECT SUM(amount) FROM transactions WHERE type = 'Expense'")
-    fun getExpenseSum(): LiveData<Double>
+    fun getExpenseSum(): LiveData<Double?>
 
 
 }

@@ -10,9 +10,9 @@ data class CategoryItem(
     @ColumnInfo(name = Constants.CATEGORY_NAME)
     var name: String,
     @ColumnInfo(name = Constants.CATEGORY_COLOR_CODE)
-    var colorCode: String,
+    var colorCode: String?,
     @ColumnInfo(name = Constants.CATEGORY_ICON)
-    var icon: String
+    var icon: String?
 ) {
     @PrimaryKey(autoGenerate = true)
     var id: Int? = null
