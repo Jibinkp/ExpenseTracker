@@ -17,7 +17,6 @@ class AddCategoryDialog(
         super.onCreate(savedInstanceState)
         binding = LayoutAddCategoryDialogBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         initView()
     }
 
@@ -25,15 +24,12 @@ class AddCategoryDialog(
         binding.txtCancel.setOnClickListener {
             cancel()
         }
-
         binding.txtAdd.setOnClickListener {
             val name = binding.txtName.text.toString()
-
             if (name.isEmpty()) {
                 Toast.makeText(context, "Enter the category name", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-
             val item = CategoryItem(
                 name,
                 null,

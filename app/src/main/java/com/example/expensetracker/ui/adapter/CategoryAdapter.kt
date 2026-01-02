@@ -1,6 +1,5 @@
 package com.example.expensetracker.ui.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -8,7 +7,6 @@ import com.example.expensetracker.data.database.entities.CategoryItem
 import com.example.expensetracker.databinding.CategoryItemLayoutBinding
 
 class CategoryAdapter(
-    private val context: Context,
     var items: List<CategoryItem>
 ) : RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
 
@@ -25,7 +23,7 @@ class CategoryAdapter(
         holder: CategoryViewHolder,
         position: Int
     ) {
-        val currentItem = items[position]
+        holder.bind(items[position])
     }
 
     override fun getItemCount(): Int {
@@ -33,8 +31,10 @@ class CategoryAdapter(
     }
 
 
-    inner class CategoryViewHolder(binding: CategoryItemLayoutBinding) :
+    inner class CategoryViewHolder(private val binding: CategoryItemLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
-
+        fun bind(item: CategoryItem){
+            binding.txtCategory.text = item.name
+        }
     }
 }
