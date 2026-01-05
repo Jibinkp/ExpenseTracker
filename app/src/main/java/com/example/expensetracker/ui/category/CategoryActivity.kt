@@ -16,6 +16,7 @@ import com.example.expensetracker.data.database.entities.CategoryItem
 import com.example.expensetracker.data.database.repository.ExpenseTrackerRepository
 import com.example.expensetracker.databinding.ActivityCategoryBinding
 import com.example.expensetracker.ui.adapter.CategoryAdapter
+import com.example.expensetracker.ui.adapter.CategoryAdapterListener
 import com.example.expensetracker.ui.home.HomeViewModel
 import com.example.expensetracker.ui.home.HomeViewModelFactory
 
@@ -42,7 +43,11 @@ class CategoryActivity : AppCompatActivity() {
         val repository = ExpenseTrackerRepository(database)
         val factory = CategoryViewModelFactory(repository)
         val viewModel = ViewModelProviders.of(this, factory).get(CategoryViewModel::class.java)
-        val categoryAdapter = CategoryAdapter(context = this, listOf())
+        val categoryAdapter = CategoryAdapter(listOf(), object : CategoryAdapterListener {
+            override fun deleteClickListener(item: CategoryItem) {
+                viewModel.deleteCategory(item)
+            }
+        })
         binding.rvCategory.layoutManager = LinearLayoutManager(this)
         binding.rvCategory.adapter = categoryAdapter
 

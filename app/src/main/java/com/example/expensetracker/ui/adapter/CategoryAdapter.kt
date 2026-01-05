@@ -7,7 +7,8 @@ import com.example.expensetracker.data.database.entities.CategoryItem
 import com.example.expensetracker.databinding.CategoryItemLayoutBinding
 
 class CategoryAdapter(
-    var items: List<CategoryItem>
+    var items: List<CategoryItem>,
+    private val categoryAdapterListener: CategoryAdapterListener
 ) : RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
 
     override fun onCreateViewHolder(
@@ -33,8 +34,11 @@ class CategoryAdapter(
 
     inner class CategoryViewHolder(private val binding: CategoryItemLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: CategoryItem){
+        fun bind(item: CategoryItem) {
             binding.txtCategory.text = item.name
+            binding.ivDelete.setOnClickListener {
+                categoryAdapterListener.deleteClickListener(item)
+            }
         }
     }
 }

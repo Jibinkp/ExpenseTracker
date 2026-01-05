@@ -13,9 +13,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.expensetracker.R
 import com.example.expensetracker.data.database.ExpenseTrackerDatabase
+import com.example.expensetracker.data.database.entities.CategoryItem
 import com.example.expensetracker.data.database.repository.ExpenseTrackerRepository
 import com.example.expensetracker.databinding.ActivityMainBinding
 import com.example.expensetracker.ui.adapter.CategoryAdapter
+import com.example.expensetracker.ui.adapter.CategoryAdapterListener
 import com.example.expensetracker.ui.category.CategoryActivity
 import com.example.expensetracker.ui.transaction.TransactionActivity
 
@@ -41,7 +43,12 @@ class MainActivity : AppCompatActivity() {
         val repository = ExpenseTrackerRepository(database)
         val factory = HomeViewModelFactory(repository)
         val viewModel = ViewModelProviders.of(this, factory).get(HomeViewModel::class.java)
-        val categoryAdapter = CategoryAdapter(context = this, listOf())
+        val categoryAdapter = CategoryAdapter(listOf(), object : CategoryAdapterListener {
+            override fun deleteClickListener(item: CategoryItem) {
+                viewModel.deleteCategory(item)
+            }
+
+        })
         binding.rvCategory.layoutManager = LinearLayoutManager(this)
         binding.rvCategory.adapter = categoryAdapter
 
