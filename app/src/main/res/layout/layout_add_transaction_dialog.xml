@@ -23,43 +23,62 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
-            android:inputType="numberDecimal"
-            android:hint="Amount"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:background="@drawable/background_input_text" />
+            android:background="@drawable/background_input_text"
+            android:hint="Amount"
+            android:inputType="numberDecimal" />
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
-            android:inputType="numberDecimal"
-            android:hint="Amount"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:background="@drawable/background_input_text" />
+            android:background="@drawable/background_input_text"
+            android:hint="Date"
+            android:inputType="numberDecimal" />
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
-            android:inputType="numberDecimal"
-            android:hint="Amount"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:background="@drawable/background_input_text" />
+            android:background="@drawable/background_input_text"
+            android:hint="Category"
+            android:inputType="numberDecimal" />
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
-            android:inputType="numberDecimal"
-            android:hint="Amount"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:background="@drawable/background_input_text" />
+            android:background="@drawable/background_input_text"
+            android:hint="Type"
+            android:inputType="numberDecimal" />
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
-            android:inputType="numberDecimal"
-            android:hint="Amount"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:background="@drawable/background_input_text" />
+            android:background="@drawable/background_input_text"
+            android:hint="Note"
+            android:inputType="numberDecimal" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="end"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="16dp"
+                android:text="CANCEL" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ADD" />
+        </LinearLayout>
 
     </LinearLayout>
 
