@@ -5,7 +5,11 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.ViewModelProviders
 import com.example.expensetracker.R
+import com.example.expensetracker.data.database.ExpenseTrackerDatabase
+import com.example.expensetracker.data.database.entities.TransactionsItem
+import com.example.expensetracker.data.database.repository.ExpenseTrackerRepository
 import com.example.expensetracker.databinding.ActivityTransactionBinding
 
 class TransactionActivity : AppCompatActivity() {
@@ -25,8 +29,17 @@ class TransactionActivity : AppCompatActivity() {
     }
 
     private fun initView() {
+        val database = ExpenseTrackerDatabase(this)
+        val repository = ExpenseTrackerRepository(database)
+        val factory = TransactionViewModelFactory(repository)
+        val viewModel = ViewModelProviders.of(this, factory).get(TransactionViewModel::class)
+
         binding.fbAddTransaction.setOnClickListener {
-            AddTransactionDialog(this).show()
+            AddTransactionDialog(this, object : AddTransactionDialogListener {
+                override fun onAddClickListener(item: TransactionsItem) {
+                    viewModel.upsertTransaction(item)
+                }
+            }).show()
         }
     }
 }
