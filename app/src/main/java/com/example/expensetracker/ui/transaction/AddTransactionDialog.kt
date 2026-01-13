@@ -3,6 +3,7 @@ package com.example.expensetracker.ui.transaction
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
+import androidx.appcompat.app.ActionBar
 import com.example.expensetracker.data.database.entities.TransactionsItem
 import com.example.expensetracker.databinding.LayoutAddTransactionDialogBinding
 import com.example.expensetracker.ui.utils.dateutils.DateUtils
@@ -18,6 +19,11 @@ class AddTransactionDialog(
         super.onCreate(savedInstanceState)
         binding = LayoutAddTransactionDialogBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        window?.setBackgroundDrawableResource(android.R.color.transparent)
+        window?.setLayout(
+            android.view.ViewGroup.LayoutParams.WRAP_CONTENT,
+            android.view.ViewGroup.LayoutParams.WRAP_CONTENT
+        )
         initView()
     }
 
