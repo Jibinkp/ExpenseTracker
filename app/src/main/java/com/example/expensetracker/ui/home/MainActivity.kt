@@ -1,8 +1,8 @@
 package com.example.expensetracker.ui.home
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -10,14 +10,13 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.expensetracker.R
 import com.example.expensetracker.data.database.ExpenseTrackerDatabase
 import com.example.expensetracker.data.database.entities.CategoryItem
 import com.example.expensetracker.data.database.repository.ExpenseTrackerRepository
 import com.example.expensetracker.databinding.ActivityMainBinding
-import com.example.expensetracker.ui.adapter.CategoryAdapter
-import com.example.expensetracker.ui.adapter.CategoryAdapterListener
+import com.example.expensetracker.ui.adapter.category.CategoryAdapter
+import com.example.expensetracker.ui.adapter.category.CategoryAdapterListener
+import com.example.expensetracker.ui.adapter.transaction.TransactionAdapter
 import com.example.expensetracker.ui.category.CategoryActivity
 import com.example.expensetracker.ui.transaction.TransactionActivity
 
@@ -38,6 +37,7 @@ class MainActivity : AppCompatActivity() {
         initView()
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun initView() {
         val database = ExpenseTrackerDatabase(this)
         val repository = ExpenseTrackerRepository(database)
@@ -52,9 +52,18 @@ class MainActivity : AppCompatActivity() {
         binding.rvCategory.layoutManager = LinearLayoutManager(this)
         binding.rvCategory.adapter = categoryAdapter
 
+        val transactionAdapter = TransactionAdapter(listOf())
+        binding.rvTransaction.layoutManager = LinearLayoutManager(this)
+        binding.rvTransaction.adapter = transactionAdapter
+
         viewModel.getLastFiveCategories().observe(this, Observer {
             categoryAdapter.items = it
             categoryAdapter.notifyDataSetChanged()
+        })
+
+        viewModel.getLastFiveTransactions().observe(this, Observer {
+            transactionAdapter.items = it
+            transactionAdapter.notifyDataSetChanged()
         })
 
         viewModel.getIncomeSum().observe(this, Observer {
@@ -62,7 +71,7 @@ class MainActivity : AppCompatActivity() {
             if (it != null) {
                 total = it
             }
-            val totalIncome = "$ $total"
+            val totalIncome = "$total₹"
             binding.txtIncomeAmountSum.text = totalIncome
         })
 
@@ -71,7 +80,7 @@ class MainActivity : AppCompatActivity() {
             if (it != null) {
                 total = it
             }
-            val totalExpenses = "$ $total"
+            val totalExpenses = "$total₹"
             binding.txtExpenseAmountSum.text = totalExpenses
         })
 

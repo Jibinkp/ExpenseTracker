@@ -11,14 +11,11 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.expensetracker.R
 import com.example.expensetracker.data.database.ExpenseTrackerDatabase
-import com.example.expensetracker.data.database.ExpenseTrackerDatabase.Companion.invoke
 import com.example.expensetracker.data.database.entities.CategoryItem
 import com.example.expensetracker.data.database.repository.ExpenseTrackerRepository
 import com.example.expensetracker.databinding.ActivityCategoryBinding
-import com.example.expensetracker.ui.adapter.CategoryAdapter
-import com.example.expensetracker.ui.adapter.CategoryAdapterListener
-import com.example.expensetracker.ui.home.HomeViewModel
-import com.example.expensetracker.ui.home.HomeViewModelFactory
+import com.example.expensetracker.ui.adapter.category.CategoryAdapter
+import com.example.expensetracker.ui.adapter.category.CategoryAdapterListener
 
 class CategoryActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCategoryBinding
@@ -42,7 +39,7 @@ class CategoryActivity : AppCompatActivity() {
         val database = ExpenseTrackerDatabase(this)
         val repository = ExpenseTrackerRepository(database)
         val factory = CategoryViewModelFactory(repository)
-        val viewModel = ViewModelProviders.of(this, factory).get(CategoryViewModel::class.java)
+        val viewModel = ViewModelProviders.of(this, factory)[CategoryViewModel::class.java]
         val categoryAdapter = CategoryAdapter(listOf(), object : CategoryAdapterListener {
             override fun deleteClickListener(item: CategoryItem) {
                 viewModel.deleteCategory(item)

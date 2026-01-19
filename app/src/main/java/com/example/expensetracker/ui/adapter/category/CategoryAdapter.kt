@@ -1,4 +1,4 @@
-package com.example.expensetracker.ui.adapter
+package com.example.expensetracker.ui.adapter.category
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
