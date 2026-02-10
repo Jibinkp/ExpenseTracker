@@ -21,7 +21,7 @@ interface TransactionDao {
     @Query("SELECT * FROM categories ORDER BY id DESC")
     fun getCategories(): LiveData<List<CategoryItem>>
 
-    @Query("SELECT * FROM categories ORDER BY id DESC LIMIT 5")
+    @Query("SELECT * FROM categories ORDER BY id DESC LIMIT 3")
     fun getLastFiveCategories(): LiveData<List<CategoryItem>>
 
     // ---- Transaction ----
@@ -34,7 +34,7 @@ interface TransactionDao {
     @Query("SELECT * FROM transactions ORDER BY id DESC")
     fun getTransactions(): LiveData<List<TransactionsItem>>
 
-    @Query("SELECT * FROM transactions ORDER BY id DESC LIMIT 5")
+    @Query("SELECT * FROM transactions ORDER BY id DESC LIMIT 3")
     fun getLastFiveTransactions(): LiveData<List<TransactionsItem>>
 
     @Query("SELECT SUM(amount) FROM transactions WHERE type = 'Income'")
