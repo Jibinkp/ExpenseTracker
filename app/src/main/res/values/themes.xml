@@ -20,4 +20,17 @@
     </style>
 
     <style name="Theme.ExpenseTracker" parent="Base.Theme.ExpenseTracker" />
+
+
+    <style name="Theme.ExpenseTracker.Splash" parent="Theme.SplashScreen">
+        <!-- Splash background -->
+        <item name="windowSplashScreenBackground">@color/white</item>
+        <!-- App icon in splash -->
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_income</item>
+        <!-- Icon background (optional) -->
+        <item name="windowSplashScreenIconBackgroundColor">@color/white</item>
+        <!-- After splash, go to main theme -->
+        <item name="postSplashScreenTheme">@style/Theme.ExpenseTracker</item>
+
+    </style>
 </resources>
