@@ -16,7 +16,17 @@ data class TransactionsItem(
     @ColumnInfo(name = Constants.TRANSACTION_DATE)
     var date: String,
     @ColumnInfo(name = Constants.TRANSACTION_TYPE)
-    var type: String
+    var type: String,
+    @ColumnInfo(name = Constants.TRANSACTION_TITLE)
+    var transactionTitle: String,
+    @ColumnInfo(name = Constants.TRANSACTION_STATUS)
+    var transactionStatus: String,
+    @ColumnInfo(name = Constants.TRANSACTION_ADDED_DATE)
+    var transactionAddedDate: String,
+    @ColumnInfo(name = Constants.TRANSACTION_UPDATED_DATE)
+    var transactionUpdatedDate: String,
+    @ColumnInfo(name = Constants.TRANSACTION_PAYMENT_TYPE)
+    var transactionPaymentType: String
 ) {
     @PrimaryKey(autoGenerate = true)
     var id: Int? = null
