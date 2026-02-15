@@ -35,7 +35,7 @@ class CategoryAdapter(
     inner class CategoryViewHolder(private val binding: CategoryItemLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: CategoryItem) {
-            binding.txtCategory.text = item.name
+            binding.txtCategory.text = item.categoryTitle
             binding.ivDelete.setOnClickListener {
                 categoryAdapterListener.deleteClickListener(item)
             }

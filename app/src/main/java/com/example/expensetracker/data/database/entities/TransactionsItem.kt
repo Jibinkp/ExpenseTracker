@@ -12,7 +12,7 @@ data class TransactionsItem(
     @ColumnInfo(name = Constants.TRANSACTION_CATEGORY_ID)
     var categoryId: Int,
     @ColumnInfo(name = Constants.TRANSACTION_NOTE)
-    var note: String,
+    var note: String?,
     @ColumnInfo(name = Constants.TRANSACTION_DATE)
     var date: String,
     @ColumnInfo(name = Constants.TRANSACTION_TYPE)

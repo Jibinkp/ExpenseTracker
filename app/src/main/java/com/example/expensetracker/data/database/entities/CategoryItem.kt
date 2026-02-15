@@ -10,7 +10,7 @@ data class CategoryItem(
     @ColumnInfo(name = Constants.CATEGORY_TITLE)
     var categoryTitle: String,
     @ColumnInfo(name = Constants.CATEGORY_NOTE)
-    var catgeoryNote: String,
+    var categoryNote: String?,
     @ColumnInfo(name = Constants.CATEGORY_STATUS)
     var categoryStatus: String,
     @ColumnInfo(name = Constants.CATEGORY_ADDED_DATE)

@@ -74,7 +74,7 @@ class AddTransactionDialog(
 
             val note = binding.etNote.text.toString()
             val transactionItem = TransactionsItem(
-                amount.toDouble(), 1, note, date, type
+                amount.toDouble(), 1, note, date, type,"null","null","null","null","null"
             )
             addTransactionDialogListener.onAddClickListener(transactionItem)
             dismiss()

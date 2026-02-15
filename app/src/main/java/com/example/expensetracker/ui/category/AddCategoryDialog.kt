@@ -33,7 +33,9 @@ class AddCategoryDialog(
             val item = CategoryItem(
                 name,
                 null,
-                null
+                "ACTIVE",
+                "2026-02-15",
+                "2026-02-15",
             )
             addCategoryDialogListener.onAddClickListener(item)
             dismiss()
