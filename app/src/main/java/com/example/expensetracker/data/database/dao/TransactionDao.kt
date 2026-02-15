@@ -5,13 +5,14 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Query
 import androidx.room.Upsert
+import com.example.expensetracker.data.database.entities.BudgetItem
 import com.example.expensetracker.data.database.entities.CategoryItem
 import com.example.expensetracker.data.database.entities.TransactionsItem
 
 @Dao
 interface TransactionDao {
 
-    // ---- Category ----
+    // CATEGORY
     @Upsert
     suspend fun upsertCategory(item: CategoryItem)
 
@@ -23,8 +24,9 @@ interface TransactionDao {
 
     @Query("SELECT * FROM categories ORDER BY id DESC LIMIT 3")
     fun getLastFiveCategories(): LiveData<List<CategoryItem>>
+    // END
 
-    // ---- Transaction ----
+    // TRANSACTION
     @Upsert
     suspend fun upsertTransaction(item: TransactionsItem)
 
@@ -42,6 +44,10 @@ interface TransactionDao {
 
     @Query("SELECT SUM(amount) FROM transactions WHERE type = 'Expense'")
     fun getExpenseSum(): LiveData<Double?>
+    // END
 
+    // BUDGET
+    @Upsert
+    suspend fun upsertBudget(budgetItem: BudgetItem)
 
 }
