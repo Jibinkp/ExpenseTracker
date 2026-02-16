@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Expense Tracker</string>
+    <string name="savings">Savings</string>
+    <string name="reminder">Reminder</string>
+    <string name="budget_icon">budget icon</string>
+    <string name="reminder_icon">reminder icon</string>
+    <string name="savings_icon">savings icon</string>
+    <string name="budget">Budget</string>
+    <string name="transactions">Transactions</string>
+    <string name="see_all">See All</string>
 </resources>

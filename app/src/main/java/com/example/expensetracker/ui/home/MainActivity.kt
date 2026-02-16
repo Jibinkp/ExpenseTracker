@@ -9,6 +9,7 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.expensetracker.data.database.ExpenseTrackerDatabase
@@ -44,24 +45,12 @@ class MainActivity : AppCompatActivity() {
         val database = ExpenseTrackerDatabase(this)
         val repository = ExpenseTrackerRepository(database)
         val factory = HomeViewModelFactory(repository)
-        val viewModel = ViewModelProviders.of(this, factory).get(HomeViewModel::class.java)
-        val categoryAdapter = CategoryAdapter(listOf(), object : CategoryAdapterListener {
-            override fun deleteClickListener(item: CategoryItem) {
-                viewModel.deleteCategory(item)
-            }
-
-        })
-        binding.rvCategory.layoutManager = LinearLayoutManager(this)
-        binding.rvCategory.adapter = categoryAdapter
+        val viewModel = ViewModelProvider(this, factory)[HomeViewModel::class.java]
 
         val transactionAdapter = TransactionAdapter(listOf())
         binding.rvTransaction.layoutManager = LinearLayoutManager(this)
         binding.rvTransaction.adapter = transactionAdapter
 
-        viewModel.getLastFiveCategories().observe(this, Observer {
-            categoryAdapter.items = it
-            categoryAdapter.notifyDataSetChanged()
-        })
 
         viewModel.getLastFiveTransactions().observe(this, Observer {
             transactionAdapter.items = it
@@ -85,11 +74,6 @@ class MainActivity : AppCompatActivity() {
             val totalExpenses = "$total₹"
             binding.txtExpenseAmountSum.text = totalExpenses
         })
-
-        binding.txtSeeAllCategory.setOnClickListener {
-            val intent = Intent(this, CategoryActivity::class.java)
-            startActivity(intent)
-        }
 
         binding.txtSeeAllTransaction.setOnClickListener {
             val intent = Intent(this, TransactionActivity::class.java)
