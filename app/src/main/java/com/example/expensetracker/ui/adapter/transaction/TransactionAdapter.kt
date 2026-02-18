@@ -3,6 +3,7 @@ package com.example.expensetracker.ui.adapter.transaction
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.expensetracker.data.Constants
 import com.example.expensetracker.data.database.entities.TransactionsItem
 import com.example.expensetracker.databinding.LayoutTransactionItemBinding
 
@@ -29,15 +30,19 @@ class TransactionAdapter(var items: List<TransactionsItem>) :
         return items.size
     }
 
-    inner class TransactionViewHolder(private val binding: LayoutTransactionItemBinding) :
+     class TransactionViewHolder(private val binding: LayoutTransactionItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: TransactionsItem) {
-            val amount = "${item.amount}₹"
+            val amount = when(item.type){
+                Constants.ENUM_TRANSACTION_TYPE.INCOME.name -> "+ ${item.amount}₹"
+                Constants.ENUM_TRANSACTION_TYPE.EXPENSE.name -> "- ${item.amount}₹"
+                else -> ""
+            }
             binding.txtAmount.text = amount
-            binding.txtCategory.text = item.categoryId.toString()
+            binding.tvTitle.text = item.transactionTitle
             binding.txtDate.text = item.date
-            binding.txtType.text = item.type
+            binding.tvPaymentThrough.text = item.transactionPaymentType
         }
     }
 }

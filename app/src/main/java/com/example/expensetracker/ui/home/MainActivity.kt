@@ -10,16 +10,11 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.expensetracker.data.database.ExpenseTrackerDatabase
-import com.example.expensetracker.data.database.entities.CategoryItem
 import com.example.expensetracker.data.database.repository.ExpenseTrackerRepository
 import com.example.expensetracker.databinding.ActivityMainBinding
-import com.example.expensetracker.ui.adapter.category.CategoryAdapter
-import com.example.expensetracker.ui.adapter.category.CategoryAdapterListener
 import com.example.expensetracker.ui.adapter.transaction.TransactionAdapter
-import com.example.expensetracker.ui.category.CategoryActivity
 import com.example.expensetracker.ui.transaction.TransactionActivity
 
 class MainActivity : AppCompatActivity() {
@@ -58,7 +53,7 @@ class MainActivity : AppCompatActivity() {
         })
 
         viewModel.getIncomeSum().observe(this, Observer {
-            var total: Double = 0.0
+            var total = 0.0
             if (it != null) {
                 total = it
             }
@@ -67,7 +62,7 @@ class MainActivity : AppCompatActivity() {
         })
 
         viewModel.getExpenseSum().observe(this, Observer {
-            var total: Double = 0.0
+            var total = 0.0
             if (it != null) {
                 total = it
             }

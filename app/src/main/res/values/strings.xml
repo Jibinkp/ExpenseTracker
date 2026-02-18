@@ -8,4 +8,5 @@
     <string name="budget">Budget</string>
     <string name="transactions">Transactions</string>
     <string name="see_all">See All</string>
+    <string name="transaction_item_icon">transaction item icon</string>
 </resources>
