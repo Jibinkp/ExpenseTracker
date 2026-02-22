@@ -9,4 +9,11 @@
     <string name="transactions">Transactions</string>
     <string name="see_all">See All</string>
     <string name="transaction_item_icon">transaction item icon</string>
+    <string name="home">Home</string>
+    <string name="settings">Settings</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="payments_icon">payments icon</string>
+    <string name="payments">Payments</string>
+    <string name="add_your_goals">Add your goals</string>
+    <string name="filter_your_goals">Filter your goals</string>
 </resources>

@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.expensetracker.R
 import com.example.expensetracker.data.database.ExpenseTrackerDatabase
@@ -37,7 +37,7 @@ class TransactionActivity : AppCompatActivity() {
         val database = ExpenseTrackerDatabase(this)
         val repository = ExpenseTrackerRepository(database)
         val factory = TransactionViewModelFactory(repository)
-        val viewModel = ViewModelProviders.of(this, factory)[TransactionViewModel::class]
+        val viewModel = ViewModelProvider(this, factory)[TransactionViewModel::class]
         val transactionAdapter = TransactionAdapter(listOf())
         binding.rvTransaction.layoutManager = LinearLayoutManager(this)
         binding.rvTransaction.adapter = transactionAdapter
