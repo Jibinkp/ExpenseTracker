@@ -59,8 +59,8 @@ class HomeFragment : Fragment() {
         viewModel = ViewModelProvider(this, factory)[HomeViewModel::class.java]
         transactionAdapter = TransactionAdapter(listOf())
 
-        binding.rvTransaction.layoutManager = LinearLayoutManager(requireContext())
-        binding.rvTransaction.adapter = transactionAdapter
+        /*binding.rvTransaction.layoutManager = LinearLayoutManager(requireContext())
+        binding.rvTransaction.adapter = transactionAdapter*/
 
         viewModel.getLastFiveTransactions().observe(viewLifecycleOwner) {
             transactionAdapter.items = it
@@ -69,16 +69,16 @@ class HomeFragment : Fragment() {
 
         viewModel.getIncomeSum().observe(viewLifecycleOwner) {
             val total = it ?: 0.0
-            binding.txtIncomeAmountSum.text = "$total₹"
+            //binding.txtIncomeAmountSum.text = "$total₹"
         }
 
         viewModel.getExpenseSum().observe(viewLifecycleOwner) {
             val total = it ?: 0.0
-            binding.txtExpenseAmountSum.text = "$total₹"
+            //binding.txtExpenseAmountSum.text = "$total₹"
         }
 
-        binding.txtSeeAllTransaction.setOnClickListener {
+        /*binding.txtSeeAllTransaction.setOnClickListener {
             startActivity(Intent(requireContext(), TransactionActivity::class.java))
-        }
+        }*/
     }
 }

@@ -64,6 +64,7 @@ dependencies {
     // coroutines dependencies
     implementation(libs.kotlinx.coroutines.android)
 
-    implementation(libs.material.v1120)
+    // implementation(libs.material.v1120)
     implementation(libs.androidx.core.splashscreen)
+    implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
 }

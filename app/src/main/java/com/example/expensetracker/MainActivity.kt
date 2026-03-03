@@ -8,7 +8,10 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import com.example.expensetracker.databinding.ActivityMainBinding
+import com.example.expensetracker.ui.budget.BudgetFragment
+import com.example.expensetracker.ui.expenses.ExpensesFragment
 import com.example.expensetracker.ui.home.HomeFragment
+import com.example.expensetracker.ui.income.IncomeFragment
 import com.example.expensetracker.ui.reminder.ReminderFragment
 import com.example.expensetracker.ui.savings.SavingsFragment
 import com.example.expensetracker.ui.settings.SettingsFragment
@@ -37,17 +40,17 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 R.id.iSavings -> {
-                    loadFragment(SavingsFragment.newInstance())
+                    loadFragment(ExpensesFragment.newInstance())
                     true
                 }
 
                 R.id.iReminder -> {
-                    loadFragment(ReminderFragment.newInstance())
+                    loadFragment(IncomeFragment.newInstance())
                     true
                 }
 
                 R.id.iSettings -> {
-                    loadFragment(SettingsFragment.newInstance())
+                    loadFragment(BudgetFragment.newInstance())
                     true
                 }
 
