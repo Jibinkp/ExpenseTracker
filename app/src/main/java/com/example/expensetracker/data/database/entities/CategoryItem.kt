@@ -4,19 +4,22 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.example.expensetracker.data.Constants
+import java.sql.Timestamp
 
 @Entity(tableName = Constants.CATEGORY_TABLE_NAME)
 data class CategoryItem(
-    @ColumnInfo(name = Constants.CATEGORY_TITLE)
-    var categoryTitle: String,
-    @ColumnInfo(name = Constants.CATEGORY_NOTE)
-    var categoryNote: String?,
-    @ColumnInfo(name = Constants.CATEGORY_STATUS)
-    var categoryStatus: String,
-    @ColumnInfo(name = Constants.CATEGORY_ADDED_DATE)
-    var categoryAddedDate: String,
-    @ColumnInfo(name = Constants.CATEGORY_UPDATED_DATE)
-    var categoryUpdatedDate: String,
+    @ColumnInfo(name = "name")
+    val name: String,
+    @ColumnInfo(name = "primary_type")
+    val primaryType: String,
+    @ColumnInfo(name = "icon_name")
+    val iconName: String? = null,
+    @ColumnInfo(name = "is_default")
+    val isDefault: Int? = null,
+    @ColumnInfo(name = "is_archived")
+    val isArchived: Int? = null,
+    @ColumnInfo(name = "created_at")
+    val createdAt: Long = System.currentTimeMillis()
 ) {
     @PrimaryKey(autoGenerate = true)
     var id: Int? = null

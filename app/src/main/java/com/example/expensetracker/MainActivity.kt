@@ -33,24 +33,29 @@ class MainActivity : AppCompatActivity() {
         }
         loadFragment(HomeFragment())
         binding.bottomNav.setOnItemSelectedListener { item ->
-            when(item.itemId){
+            when (item.itemId) {
                 R.id.iHome -> {
                     loadFragment(HomeFragment.newInstance())
                     true
                 }
 
-                R.id.iSavings -> {
+                R.id.iExpense -> {
                     loadFragment(ExpensesFragment.newInstance())
                     true
                 }
 
-                R.id.iReminder -> {
+                R.id.iBudget -> {
+                    loadFragment(BudgetFragment.newInstance())
+                    true
+                }
+
+                R.id.iIncome -> {
                     loadFragment(IncomeFragment.newInstance())
                     true
                 }
 
                 R.id.iSettings -> {
-                    loadFragment(BudgetFragment.newInstance())
+                    loadFragment(SettingsFragment.newInstance())
                     true
                 }
 
@@ -61,7 +66,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun loadFragment(fragment: Fragment) {
         val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(binding.container.id,fragment)
+        transaction.replace(binding.container.id, fragment)
         transaction.commit()
     }
 }

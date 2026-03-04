@@ -6,14 +6,19 @@
         android:title="@string/home" />
 
     <item
-        android:id="@+id/iSavings"
-        android:icon="@drawable/ic_savings"
-        android:title="@string/savings" />
+        android:id="@+id/iExpense"
+        android:icon="@drawable/paid_24px"
+        android:title="Expenses" />
 
     <item
-        android:id="@+id/iReminder"
-        android:icon="@drawable/ic_reminder"
-        android:title="@string/reminder" />
+        android:id="@+id/iIncome"
+        android:icon="@drawable/money_24px"
+        android:title="Income"/>
+
+    <item
+        android:id="@+id/iBudget"
+        android:icon="@drawable/ic_savings"
+        android:title="Budget" />
 
     <item
         android:id="@+id/iSettings"

@@ -11,12 +11,14 @@ import com.example.expensetracker.data.Constants
 import com.example.expensetracker.data.database.dao.TransactionDao
 import com.example.expensetracker.data.database.entities.BudgetItem
 import com.example.expensetracker.data.database.entities.CategoryItem
+import com.example.expensetracker.data.database.entities.ExpenseItem
 import com.example.expensetracker.data.database.entities.GoalItem
+import com.example.expensetracker.data.database.entities.IncomeItem
 import com.example.expensetracker.data.database.entities.ReminderItem
 import com.example.expensetracker.data.database.entities.TransactionsItem
 
 @Database(
-    entities = [CategoryItem::class, TransactionsItem::class, BudgetItem::class, GoalItem::class, ReminderItem::class],
+    entities = [CategoryItem::class, TransactionsItem::class, BudgetItem::class, GoalItem::class, ReminderItem::class, IncomeItem::class, ExpenseItem::class],
     version = 1
 )
 abstract class ExpenseTrackerDatabase : RoomDatabase() {
