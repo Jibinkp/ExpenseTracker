@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/iHome"
+        android:icon="@drawable/ic_home"
+        android:title="@string/home" />
+
+    <item
+        android:id="@+id/iExpense"
+        android:icon="@drawable/paid_24px"
+        android:title="Expenses" />
+
+    <item
+        android:id="@+id/iIncome"
+        android:icon="@drawable/money_24px"
+        android:title="Income"/>
+
+    <item
+        android:id="@+id/iBudget"
+        android:icon="@drawable/ic_savings"
+        android:title="Budget" />
+
+    <item
+        android:id="@+id/iSettings"
+        android:icon="@drawable/ic_setting"
+        android:title="@string/settings" />
+
+</menu>

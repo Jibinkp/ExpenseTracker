@@ -2,6 +2,8 @@ package com.example.expensetracker.data.database.repository
 
 import com.example.expensetracker.data.database.ExpenseTrackerDatabase
 import com.example.expensetracker.data.database.entities.CategoryItem
+import com.example.expensetracker.data.database.entities.ExpenseItem
+import com.example.expensetracker.data.database.entities.IncomeItem
 import com.example.expensetracker.data.database.entities.TransactionsItem
 
 class ExpenseTrackerRepository(
@@ -16,22 +18,37 @@ class ExpenseTrackerRepository(
 
     fun getCategory() = expenseTrackerDatabase.getTransactionDao().getCategories()
 
-    suspend fun upsertTransaction(item: TransactionsItem) =
-        expenseTrackerDatabase.getTransactionDao().upsertTransaction(item)
+    // INCOME
+    fun getIncomes() = expenseTrackerDatabase.getTransactionDao().getIncomes()
 
-    suspend fun deleteTransaction(item: TransactionsItem) =
-        expenseTrackerDatabase.getTransactionDao().deleteTransaction(item)
+    suspend fun upsertIncome(incomeItem: IncomeItem) =
+        expenseTrackerDatabase.getTransactionDao().upsertIncome(incomeItem)
 
-    fun getTransaction() = expenseTrackerDatabase.getTransactionDao().getTransactions()
+    suspend fun deleteIncome(incomeItem: IncomeItem) =
+        expenseTrackerDatabase.getTransactionDao().deleteIncome(incomeItem)
 
-    fun getLastFiveCategories() =
-        expenseTrackerDatabase.getTransactionDao().getLastFiveCategories()
+    fun getSumOfCurrentMonthIncome(selectedDate: String) =
+        expenseTrackerDatabase.getTransactionDao().getCurrentMonthIncomeSum(selectedDate)
 
-    fun getLastFiveTransactions() =
-        expenseTrackerDatabase.getTransactionDao().getLastFiveTransactions()
+    fun getSumOfExpense(selectedDate: String) =
+        expenseTrackerDatabase.getTransactionDao().getExpenseSum(selectedDate)
 
-    fun getIncomeSum() = expenseTrackerDatabase.getTransactionDao().getIncomeSum()
+    // EXPENSE
+    fun getExpenses() = expenseTrackerDatabase.getTransactionDao().getExpenses()
 
-    fun getExpenseSum() = expenseTrackerDatabase.getTransactionDao().getExpenseSum()
+    suspend fun upsertExpense(expenseItem: ExpenseItem) =
+        expenseTrackerDatabase.getTransactionDao().upsertExpense(expenseItem)
 
+    suspend fun deleteExpense(expenseItem: ExpenseItem) =
+        expenseTrackerDatabase.getTransactionDao().deleteExpense(expenseItem)
+
+    // BUDGET
+    fun getNeedsSpend(month: String) =
+        expenseTrackerDatabase.getTransactionDao().getNeedsSpend(month)
+
+    fun getWantsSpend(month: String) =
+        expenseTrackerDatabase.getTransactionDao().getWantsSpend(month)
+
+    fun getSavingsSpend(month: String) =
+        expenseTrackerDatabase.getTransactionDao().getSavingsSpend(month)
 }

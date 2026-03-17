@@ -5,6 +5,7 @@ object Constants {
 
     // Category
     const val CATEGORY_TABLE_NAME = "categories"
+    const val CATEGORY_ID = "id"
     const val CATEGORY_TITLE = "title"
     const val CATEGORY_NOTE = "note"
     const val CATEGORY_STATUS = "status"
@@ -14,6 +15,7 @@ object Constants {
 
     // Transaction
     const val TRANSACTION_TABLE_NAME = "transactions"
+    const val TRANSACTION_ID = "id"
     const val TRANSACTION_AMOUNT = "amount"
     const val TRANSACTION_CATEGORY_ID = "category_id"
     const val TRANSACTION_NOTE = "note"
@@ -28,6 +30,7 @@ object Constants {
 
     // BUDGET
     const val BUDGET_TABLE_NAME = "budgets"
+    const val BUDGET_ID = "id"
     const val BUDGET_AMOUNT = "amount"
     const val BUDGET_NOTE = "note"
     const val BUDGET_START_DATE = "start_date"
@@ -59,4 +62,20 @@ object Constants {
     const val REMINDER_ADDED_DATE = "added_date"
     const val REMINDER_UPDATED_DATE = "updated_date"
     // END OF REMINDER
+
+    enum class ENUM_STATUS{
+        ACTIVE,
+        DEACTIVATE,
+    }
+
+    enum class ENUM_TRANSACTION_TYPE{
+        INCOME,
+        EXPENSE
+    }
+
+    const val LIST_DEFAULT_LIMIT = 3
+    const val DATE_FORMAT_YYYY_MM = "yyyy-MM"
+    const val DATE_FORMAT_MMMM_YYYY = "MMMM yyyy"
+    const val DATE_FORMAT_YYYY_MM_DD = "yyyy-MM-dd"
+    const val DATE_FORMAT_MMM_DD_YYYY = "MMM dd. yyyy"
 }
