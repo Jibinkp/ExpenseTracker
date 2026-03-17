@@ -1,3 +1,6 @@
+import org.gradle.kotlin.dsl.coreLibraryDesugaring
+import org.gradle.kotlin.dsl.implementation
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -32,6 +35,7 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
+        isCoreLibraryDesugaringEnabled = true
     }
     kotlinOptions {
         jvmTarget = "11"
@@ -67,4 +71,12 @@ dependencies {
     // implementation(libs.material.v1120)
     implementation(libs.androidx.core.splashscreen)
     implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
+
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.5")
+
+    // Appcenter
+    implementation("com.microsoft.appcenter:appcenter-analytics:5.0.6")
+    implementation ("com.microsoft.appcenter:appcenter-crashes:5.0.6")
+    implementation("com.microsoft.appcenter:appcenter-distribute:5.0.6")
+
 }

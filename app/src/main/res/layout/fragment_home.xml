@@ -19,10 +19,10 @@
         tools:layout_editor_absoluteX="16dp">
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/tvDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="March 2026"
+            android:text=""
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -31,11 +31,11 @@
             android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="SpendWise"
+            android:text="@string/spendwise"
             android:textSize="25sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            app:layout_constraintTop_toBottomOf="@+id/tvDate" />
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/materialCardView2"
@@ -65,13 +65,14 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Income"
+                    android:text="@string/income"
                     android:textSize="18sp" />
 
                 <TextView
+                    android:id="@+id/tvIncome"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="$0"
+                    android:text=""
                     android:textSize="16sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -107,13 +108,14 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Expenses"
+                    android:text="@string/expenses"
                     android:textSize="18sp" />
 
                 <TextView
+                    android:id="@+id/tvExpense"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="$0"
+                    android:text=""
                     android:textSize="16sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -148,14 +150,15 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Balance"
+                    android:text="@string/balance"
                     android:textSize="18sp" />
 
                 <TextView
+                    android:id="@+id/tvBalance"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="$0"
-                    android:textColor="#11E01A"
+                    android:text=""
+                    android:textColor="@color/purple_200"
                     android:textSize="16sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -184,7 +187,7 @@
                     android:id="@+id/textView2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="3:5:2. Spending Breakdown"
+                    android:text="@string/_3_5_2_spending_breakdown"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
@@ -237,14 +240,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Budget Allocation"
+            android:text="@string/budget_allocation"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/materialCardView4" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
+            android:id="@+id/rvBudgetAllocation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -258,20 +261,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Recent Transactions"
+            android:text="@string/recent_transactions"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
+            app:layout_constraintTop_toBottomOf="@+id/rvBudgetAllocation" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="View All"
+            android:text="@string/view_all"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
+            app:layout_constraintTop_toBottomOf="@+id/rvBudgetAllocation" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"

@@ -18,15 +18,15 @@ data class ExpenseItem(
     @ColumnInfo(name = "note")
     val note: String?,
     @ColumnInfo(name = "server_id")
-    val serverId: String?,
+    val serverId: String? = null,
     @ColumnInfo(name = "is_synced")
-    val isSynced: Int?,
+    val isSynced: Int? = null,
     @ColumnInfo(name = "is_archived")
-    val isArchived: Int?,
+    val isArchived: Int? = 0,
     @ColumnInfo(name = "created_at")
-    val createdAt: String,
+    val createdAt: Long? = System.currentTimeMillis(),
     @ColumnInfo(name = "updated_at")
-    val updatedAt: String
+    val updatedAt: Long? = null
 ) {
     @PrimaryKey(autoGenerate = true)
     var id: Int? = null

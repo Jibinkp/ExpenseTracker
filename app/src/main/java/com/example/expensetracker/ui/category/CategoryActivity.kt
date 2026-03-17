@@ -7,15 +7,15 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.expensetracker.R
 import com.example.expensetracker.data.database.ExpenseTrackerDatabase
 import com.example.expensetracker.data.database.entities.CategoryItem
 import com.example.expensetracker.data.database.repository.ExpenseTrackerRepository
 import com.example.expensetracker.databinding.ActivityCategoryBinding
-import com.example.expensetracker.ui.adapter.category.CategoryAdapter
-import com.example.expensetracker.ui.adapter.category.CategoryAdapterListener
+import com.example.expensetracker.ui.category.adapter.CategoryAdapter
+import com.example.expensetracker.ui.category.adapter.CategoryAdapterListener
 
 class CategoryActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCategoryBinding
@@ -39,7 +39,7 @@ class CategoryActivity : AppCompatActivity() {
         val database = ExpenseTrackerDatabase(this)
         val repository = ExpenseTrackerRepository(database)
         val factory = CategoryViewModelFactory(repository)
-        val viewModel = ViewModelProviders.of(this, factory)[CategoryViewModel::class.java]
+        val viewModel = ViewModelProvider(this, factory)[CategoryViewModel::class.java]
         val categoryAdapter = CategoryAdapter(listOf(), object : CategoryAdapterListener {
             override fun deleteClickListener(item: CategoryItem) {
                 viewModel.deleteCategory(item)

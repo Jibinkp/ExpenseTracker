@@ -1,19 +1,18 @@
-package com.example.expensetracker.ui.home
+package com.example.expensetracker.ui.budget
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.expensetracker.data.Constants.DATE_FORMAT_MMMM_YYYY
 import com.example.expensetracker.data.PrimaryTypes
-import com.example.expensetracker.data.database.entities.CategoryItem
 import com.example.expensetracker.data.database.repository.ExpenseTrackerRepository
 import com.example.expensetracker.ui.budget.model.BudgetModel
 import com.example.expensetracker.ui.budget.model.TotalIncomeExpenseModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
-class HomeViewModel(
-    private val repository: ExpenseTrackerRepository,
-) : ViewModel() {
+class BudgetViewModel(private val repository: ExpenseTrackerRepository) : ViewModel() {
 
     val summaryLiveData = MediatorLiveData<List<BudgetModel>>()
     val totalIncomeExpenseData = MediatorLiveData<TotalIncomeExpenseModel>()
@@ -59,6 +58,27 @@ class HomeViewModel(
         )
 
         summaryLiveData.value = list
+    }
+
+
+    private val formatter = DateTimeFormatter.ofPattern(DATE_FORMAT_MMMM_YYYY)
+    private val _currentDate = MutableLiveData(LocalDate.now())
+    val currentDate: LiveData<LocalDate> = _currentDate
+    private val _monthText = MutableLiveData<String>()
+    val monthText: LiveData<String> = _monthText
+
+    fun nextMonth() {
+        _currentDate.value = _currentDate.value?.plusMonths(1)
+        updateMonthText()
+    }
+
+    fun previousMonth() {
+        _currentDate.value = _currentDate.value?.minusMonths(1)
+        updateMonthText()
+    }
+
+    private fun updateMonthText() {
+        _monthText.value = _currentDate.value?.format(formatter)
     }
 
     fun getTotalIncomeExpense(selectedDate: String) {

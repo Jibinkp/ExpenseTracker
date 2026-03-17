@@ -7,9 +7,9 @@
     app:cardBackgroundColor="@color/white"
     app:cardCornerRadius="10dp"
     app:cardElevation="5dp"
+    android:layout_margin="5dp"
     app:cardMaxElevation="5dp"
-    app:cardPreventCornerOverlap="true"
-    app:cardUseCompatPadding="true">
+    app:cardPreventCornerOverlap="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -18,10 +18,10 @@
         android:padding="16dp">
 
         <TextView
-            android:id="@+id/textView10"
+            android:id="@+id/tvType"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Need (50%)"
+            android:text="@string/need_50"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -30,7 +30,9 @@
             android:id="@+id/textView11"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="On Track"
+            android:background="@drawable/savings_background"
+            android:paddingHorizontal="16dp"
+            android:text="@string/on_track"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -38,28 +40,29 @@
             android:id="@+id/linearProgressIndicator"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:indeterminate="true"
-            app:indicatorColor="@color/grey"
+            android:layout_marginTop="5dp"
+            android:indeterminate="false"
+            app:trackColor="@color/grey"
             app:indicatorSize="64dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView11"
-            app:trackColor="@color/purple_500"
+            app:indicatorColor="@color/purple_500"
             app:trackThickness="8dp" />
 
         <TextView
-            android:id="@+id/textView12"
+            android:id="@+id/tvSpend"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="$500 Spent"
+            android:text="@string/_0_spent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearProgressIndicator" />
 
         <TextView
-            android:id="@+id/textView13"
+            android:id="@+id/tvRemaining"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="$9500 Left"
+            android:text="@string/_0_left"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearProgressIndicator" />
 

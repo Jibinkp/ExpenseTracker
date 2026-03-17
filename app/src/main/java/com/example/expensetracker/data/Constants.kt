@@ -74,4 +74,8 @@ object Constants {
     }
 
     const val LIST_DEFAULT_LIMIT = 3
+    const val DATE_FORMAT_YYYY_MM = "yyyy-MM"
+    const val DATE_FORMAT_MMMM_YYYY = "MMMM yyyy"
+    const val DATE_FORMAT_YYYY_MM_DD = "yyyy-MM-dd"
+    const val DATE_FORMAT_MMM_DD_YYYY = "MMM dd. yyyy"
 }

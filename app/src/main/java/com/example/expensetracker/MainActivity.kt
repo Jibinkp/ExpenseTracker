@@ -3,6 +3,7 @@ package com.example.expensetracker
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -12,9 +13,11 @@ import com.example.expensetracker.ui.budget.BudgetFragment
 import com.example.expensetracker.ui.expenses.ExpensesFragment
 import com.example.expensetracker.ui.home.HomeFragment
 import com.example.expensetracker.ui.income.IncomeFragment
-import com.example.expensetracker.ui.reminder.ReminderFragment
-import com.example.expensetracker.ui.savings.SavingsFragment
 import com.example.expensetracker.ui.settings.SettingsFragment
+import com.microsoft.appcenter.AppCenter
+import com.microsoft.appcenter.analytics.Analytics
+import com.microsoft.appcenter.crashes.Crashes
+import com.microsoft.appcenter.distribute.Distribute
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -31,6 +34,8 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        AppCenter.start(application, ContextCompat.getString(this,R.string.app_center_secret_key), Analytics::class.java, Crashes::class.java,
+            Distribute::class.java)
         loadFragment(HomeFragment())
         binding.bottomNav.setOnItemSelectedListener { item ->
             when (item.itemId) {
