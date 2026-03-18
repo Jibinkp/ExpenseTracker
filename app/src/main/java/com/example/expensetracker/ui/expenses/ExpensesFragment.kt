@@ -14,6 +14,7 @@ import com.example.expensetracker.data.database.entities.ExpenseItem
 import com.example.expensetracker.data.database.repository.ExpenseTrackerRepository
 import com.example.expensetracker.databinding.FragmentExpensesBinding
 import com.example.expensetracker.databinding.FragmentHomeBinding
+import com.example.expensetracker.ui.expenses.adapter.ExpenseAdapter
 import com.example.expensetracker.ui.income.IncomeViewModel
 import com.example.expensetracker.ui.income.IncomeViewModelFactory
 

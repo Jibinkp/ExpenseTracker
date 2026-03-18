@@ -1,12 +1,11 @@
-package com.example.expensetracker.ui.expenses
+package com.example.expensetracker.ui.expenses.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.expensetracker.R
-import com.example.expensetracker.data.Constants.DATE_FORMAT_MMM_DD_YYYY
-import com.example.expensetracker.data.Constants.DATE_FORMAT_YYYY_MM_DD
+import com.example.expensetracker.data.Constants
 import com.example.expensetracker.data.PrimaryTypes
 import com.example.expensetracker.data.database.entities.ExpenseWithCategory
 import com.example.expensetracker.databinding.LayoutExpenseItemBinding
@@ -41,8 +40,11 @@ class ExpenseAdapter(var items: List<ExpenseWithCategory>) :
 
         fun bind(item: ExpenseWithCategory) {
             binding.tvDate.text =
-                DateUtils.convertDateToOtherFormat(item.expense.date, DATE_FORMAT_YYYY_MM_DD, DATE_FORMAT_MMM_DD_YYYY)
-            val amount = "-₹${item.expense.amount}"
+                DateUtils.convertDateToOtherFormat(item.expense.date,
+                    Constants.DATE_FORMAT_YYYY_MM_DD,
+                    Constants.DATE_FORMAT_MMM_DD_YYYY
+                )
+            val amount = "-₹${item.expense.amount.toInt()}"
             binding.tvAmount.text = amount
             binding.tvTitle.text = item.category.name
             when (item.category.primaryType) {

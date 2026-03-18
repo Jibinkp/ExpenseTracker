@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.expensetracker.R
+import com.example.expensetracker.data.Constants.DATE_FORMAT_MMMM_YYYY
 import com.example.expensetracker.data.Constants.DATE_FORMAT_YYYY_MM
 import com.example.expensetracker.data.database.ExpenseTrackerDatabase
 import com.example.expensetracker.data.database.ExpenseTrackerDatabase.Companion.invoke
@@ -85,14 +86,15 @@ class BudgetFragment : Fragment() {
         }
 
         viewModel.currentDate.observe(viewLifecycleOwner) {
+            binding.tvMonth.text = it.format(DateTimeFormatter.ofPattern(DATE_FORMAT_MMMM_YYYY))
             viewModel.loadSummary(it.format(DateTimeFormatter.ofPattern(DATE_FORMAT_YYYY_MM)))
             viewModel.getTotalIncomeExpense(it.format(DateTimeFormatter.ofPattern(DATE_FORMAT_YYYY_MM)))
         }
 
         viewModel.totalIncomeExpenseData.observe(viewLifecycleOwner) {
-            binding.tvTotalIncome.text = "₹${it.incomeTotal}"
-            binding.tvTotalExpense.text = "₹${it.expenseTotal}"
-            binding.tvTotalBalance.text = "₹${it.balanceTotal}"
+            binding.tvTotalIncome.text = "₹${it.incomeTotal?.toInt()}"
+            binding.tvTotalExpense.text = "₹${it.expenseTotal?.toInt()}"
+            binding.tvTotalBalance.text = "₹${it.balanceTotal?.toInt()}"
         }
 
     }
