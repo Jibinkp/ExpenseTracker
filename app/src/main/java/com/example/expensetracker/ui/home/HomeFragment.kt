@@ -75,9 +75,9 @@ class HomeFragment : Fragment() {
             LocalDate.now().format(DateTimeFormatter.ofPattern(DATE_FORMAT_YYYY_MM))
         )
         viewModel.totalIncomeExpenseData.observe(viewLifecycleOwner) {
-            binding.tvIncome.text = "₹${it.incomeTotal}"
-            binding.tvExpense.text = "₹${it.expenseTotal}"
-            binding.tvBalance.text = "₹${it.balanceTotal}"
+            binding.tvIncome.text = "₹${it.incomeTotal?.toInt()}"
+            binding.tvExpense.text = "₹${it.expenseTotal?.toInt()}"
+            binding.tvBalance.text = "₹${it.balanceTotal?.toInt()}"
         }
 
         val budgetAllocationAdapter = BudgetAllocationAdapter(listOf())

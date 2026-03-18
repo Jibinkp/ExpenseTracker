@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_margin="5dp"
     app:cardBackgroundColor="@color/white"
     app:cardCornerRadius="10dp"
     app:cardElevation="5dp"
-    android:layout_margin="5dp"
     app:cardMaxElevation="5dp"
     app:cardPreventCornerOverlap="true">
 
@@ -22,6 +22,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/need_50"
+            android:textColor="@color/black"
+            android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -33,6 +35,9 @@
             android:background="@drawable/savings_background"
             android:paddingHorizontal="16dp"
             android:text="@string/on_track"
+            android:textColor="@color/purple_200"
+            android:textSize="14sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -42,12 +47,12 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:indeterminate="false"
-            app:trackColor="@color/grey"
+            app:indicatorColor="@color/purple_500"
             app:indicatorSize="64dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView11"
-            app:indicatorColor="@color/purple_500"
+            app:trackColor="@color/grey"
             app:trackThickness="8dp" />
 
         <TextView
@@ -55,6 +60,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/_0_spent"
+            android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearProgressIndicator" />
 
@@ -63,6 +69,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/_0_left"
+            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearProgressIndicator" />
 

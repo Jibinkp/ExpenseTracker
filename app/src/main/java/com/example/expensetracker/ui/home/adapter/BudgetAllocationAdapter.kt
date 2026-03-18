@@ -56,9 +56,9 @@ class BudgetAllocationAdapter(
             }
             binding.tvType.text = type
             binding.tvSpend.text =
-                "₹${item.spend} ${ContextCompat.getString(binding.root.context, R.string.spend)}"
+                "₹${item.spend.toInt()} ${ContextCompat.getString(binding.root.context, R.string.spend)}"
             binding.tvRemaining.text =
-                "₹${item.remaining} ${ContextCompat.getString(binding.root.context, R.string.left)}"
+                "₹${item.remaining.toInt()} ${ContextCompat.getString(binding.root.context, R.string.left)}"
             val progress = ((item.spend / item.total) * 100).toInt()
             binding.linearProgressIndicator.setProgress(progress, true)
         }

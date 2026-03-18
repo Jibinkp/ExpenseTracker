@@ -38,7 +38,7 @@ class IncomeListAdapter(var items: List<IncomeItem>) :
 
         fun bind(item: IncomeItem) {
             binding.txtIncomeTitle.text = item.source
-            val amount = "+₹${item.amount}"
+            val amount = "+₹${item.amount.toInt()}"
             binding.txtIncomeAmount.text = amount
             binding.txtDate.text = DateUtils.convertDateToOtherFormat(item.date,DATE_FORMAT_YYYY_MM_DD,DATE_FORMAT_MMM_DD_YYYY)
         }

@@ -39,9 +39,9 @@ class BudgetAdapter(var items: List<BudgetModel>) :
                 else -> "${item.type} (20%)"
             }
             binding.tvType.text = type
-            binding.tvTotal.text = item.total.toString()
-            binding.tvSpend.text = item.spend.toString()
-            binding.tvRemaining.text = item.remaining.toString()
+            binding.tvTotal.text = "₹${item.total.toInt()}"
+            binding.tvSpend.text = "₹${item.spend.toInt()}"
+            binding.tvRemaining.text = "₹${item.remaining.toInt()}"
             val progress = ((item.spend / item.total) * 100).toInt()
             binding.tvPercentage.text = "$progress%"
             binding.linearProgressIndicator.setProgress(progress, true)
