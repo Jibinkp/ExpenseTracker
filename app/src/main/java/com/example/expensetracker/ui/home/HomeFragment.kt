@@ -14,10 +14,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.expensetracker.R
 import com.example.expensetracker.data.Constants.DATE_FORMAT_MMMM_YYYY
 import com.example.expensetracker.data.Constants.DATE_FORMAT_YYYY_MM
+import com.example.expensetracker.data.PrimaryTypes
 import com.example.expensetracker.data.database.ExpenseTrackerDatabase
 import com.example.expensetracker.data.database.repository.ExpenseTrackerRepository
 import com.example.expensetracker.databinding.FragmentHomeBinding
 import com.example.expensetracker.ui.home.adapter.BudgetAllocationAdapter
+import com.example.expensetracker.ui.home.adapter.RecentTransactionAdapter
 import com.example.expensetracker.ui.utils.dateutils.DateUtils
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.data.PieData
@@ -80,6 +82,15 @@ class HomeFragment : Fragment() {
             binding.tvBalance.text = "₹${it.balanceTotal?.toInt()}"
         }
 
+        val recentTransactionAdapter = RecentTransactionAdapter(listOf())
+        binding.rvRecentExpense.layoutManager = LinearLayoutManager(requireContext())
+        binding.rvRecentExpense.adapter = recentTransactionAdapter
+
+        viewModel.getLastFiveExpenses().observe(viewLifecycleOwner) {
+            recentTransactionAdapter.items = it
+            recentTransactionAdapter.notifyDataSetChanged()
+        }
+
         val budgetAllocationAdapter = BudgetAllocationAdapter(listOf())
         binding.rvBudgetAllocation.layoutManager = LinearLayoutManager(requireContext())
         binding.rvBudgetAllocation.adapter = budgetAllocationAdapter
@@ -89,17 +100,36 @@ class HomeFragment : Fragment() {
             budgetAllocationAdapter.notifyDataSetChanged()
             val entries: ArrayList<PieEntry> = ArrayList()
             for (i in it) {
+                when(i.type){
+                    PrimaryTypes.NEEDS ->{
+                        binding.tvTotalSpendOfNeeds.text = "₹${i.spend.toInt()}"
+                    }
+
+                    PrimaryTypes.WANTS ->{
+                        binding.tvTotalSpendOfWants.text = "₹${i.spend.toInt()}"
+                    }
+
+                    PrimaryTypes.SAVINGS ->{
+                        binding.tvTotalSpendOfSavings.text = "₹${i.spend.toInt()}"
+                    }
+                }
                 val percent = if (i.total != 0.0) ((i.spend / i.total) * 100).toFloat() else 0f
                 entries.add(PieEntry(percent))
             }
             loadPieChart(entries)
         }
 
-        viewModel.loadSummary(LocalDate.now().format(DateTimeFormatter.ofPattern(DATE_FORMAT_YYYY_MM)))
+        viewModel.loadSummary(
+            LocalDate.now().format(DateTimeFormatter.ofPattern(DATE_FORMAT_YYYY_MM))
+        )
+
+        binding.tvViewAll.setOnClickListener {
+
+        }
 
     }
 
-    fun loadPieChart(entries: ArrayList<PieEntry>){
+    fun loadPieChart(entries: ArrayList<PieEntry>) {
         binding.pieChart.setUsePercentValues(true)
         binding.pieChart.description.isEnabled = false
         binding.pieChart.setExtraOffsets(5f, 10f, 5f, 5f)
@@ -119,15 +149,16 @@ class HomeFragment : Fragment() {
         binding.pieChart.setDrawEntryLabels(true)
         binding.pieChart.setEntryLabelColor(Color.WHITE)
         binding.pieChart.setEntryLabelTextSize(12f)
-        val dataSet = PieDataSet(entries, ContextCompat.getString(requireContext(),R.string.budget))
+        val dataSet =
+            PieDataSet(entries, ContextCompat.getString(requireContext(), R.string.budget))
         dataSet.setDrawIcons(false)
         dataSet.sliceSpace = 3f
         dataSet.iconsOffset = MPPointF(0f, 40f)
         dataSet.selectionShift = 5f
         val colors: ArrayList<Int> = ArrayList()
-        colors.add(ContextCompat.getColor(requireContext(),R.color.red))
-        colors.add(ContextCompat.getColor(requireContext(),R.color.orange))
-        colors.add(ContextCompat.getColor(requireContext(),R.color.purple_200))
+        colors.add(ContextCompat.getColor(requireContext(), R.color.red))
+        colors.add(ContextCompat.getColor(requireContext(), R.color.orange))
+        colors.add(ContextCompat.getColor(requireContext(), R.color.purple_200))
         dataSet.colors = colors
         dataSet.setDrawValues(false)
         val data = PieData(dataSet)

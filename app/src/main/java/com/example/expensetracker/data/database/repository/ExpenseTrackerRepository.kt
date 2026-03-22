@@ -42,6 +42,8 @@ class ExpenseTrackerRepository(
     suspend fun deleteExpense(expenseItem: ExpenseItem) =
         expenseTrackerDatabase.getTransactionDao().deleteExpense(expenseItem)
 
+    fun getLastFiveExpenses() = expenseTrackerDatabase.getTransactionDao().getLastFiveExpense()
+
     // BUDGET
     fun getNeedsSpend(month: String) =
         expenseTrackerDatabase.getTransactionDao().getNeedsSpend(month)

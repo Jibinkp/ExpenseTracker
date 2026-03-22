@@ -73,7 +73,13 @@ class IncomeFragment : Fragment() {
 
         viewModel.getSumOfCurrentMonthIncome(DateUtils.getCurrentDateAndTime(DATE_FORMAT_YYYY_MM).toString())
             .observe(viewLifecycleOwner) {
-                val amount = "₹${it?.toInt()}"
+                var amount: String? = null
+                if (it != null){
+                    amount = "₹${it.toInt()}"
+                }else{
+                    amount = "₹0"
+                }
+
                 binding.tvSumOfIncome.text = amount
             }
 
