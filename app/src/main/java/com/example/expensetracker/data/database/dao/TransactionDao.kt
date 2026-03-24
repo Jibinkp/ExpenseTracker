@@ -102,6 +102,10 @@ interface TransactionDao {
     @Query("SELECT * FROM expense WHERE is_archived = '0' AND strftime('%Y-%m', date) = strftime('%Y-%m', 'now') ORDER BY date DESC")
     fun getExpenses(): LiveData<List<ExpenseWithCategory>>
 
+    @Transaction
+    @Query("SELECT * FROM expense WHERE is_archived = '0' AND strftime('%Y-%m', date) = strftime('%Y-%m', 'now') ORDER BY date DESC LIMIT 3")
+    fun getLastFiveExpense(): LiveData<List<ExpenseWithCategory>>
+
     // BUDGET
     @Query(
         """
@@ -138,4 +142,10 @@ interface TransactionDao {
     """
     )
     fun getSavingsSpend(month: String): LiveData<Double?>
+
+    @Upsert
+    suspend fun upsertCategories(items: List<CategoryItem>)
+
+    @Query("SELECT COUNT(*) FROM ${Constants.CATEGORY_TABLE_NAME}")
+    suspend fun getCategoryCount(): Int
 }

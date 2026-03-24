@@ -81,4 +81,6 @@
     <string name="_0_">-₹0</string>
     <string name="__0">₹0</string>
     <string name="money_symbol">₹</string>
+    <string name="over_budget">Over Budget</string>
+    <string name="approaching">Approaching</string>
 </resources>

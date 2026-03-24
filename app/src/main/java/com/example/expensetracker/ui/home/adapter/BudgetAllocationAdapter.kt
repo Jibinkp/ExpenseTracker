@@ -60,6 +60,19 @@ class BudgetAllocationAdapter(
             binding.tvRemaining.text =
                 "₹${item.remaining.toInt()} ${ContextCompat.getString(binding.root.context, R.string.left)}"
             val progress = ((item.spend / item.total) * 100).toInt()
+            if (progress<= 50){
+                binding.tvLabel.text = ContextCompat.getString(binding.root.context,R.string.on_track)
+                binding.tvLabel.setTextColor(ContextCompat.getColor(binding.root.context,R.color.purple_200))
+                binding.tvLabel.background = ContextCompat.getDrawable(binding.root.context,R.drawable.savings_background)
+            }else if (progress in 51..99){
+                binding.tvLabel.text = ContextCompat.getString(binding.root.context,R.string.approaching)
+                binding.tvLabel.setTextColor(ContextCompat.getColor(binding.root.context,R.color.orange))
+                binding.tvLabel.background = ContextCompat.getDrawable(binding.root.context,R.drawable.wants_background)
+            }else{
+                binding.tvLabel.text = ContextCompat.getString(binding.root.context,R.string.over_budget)
+                binding.tvLabel.setTextColor(ContextCompat.getColor(binding.root.context,R.color.red))
+                binding.tvLabel.background = ContextCompat.getDrawable(binding.root.context,R.drawable.expense_background)
+            }
             binding.linearProgressIndicator.setProgress(progress, true)
         }
     }

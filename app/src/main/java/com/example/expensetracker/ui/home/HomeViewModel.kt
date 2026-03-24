@@ -84,4 +84,6 @@ class HomeViewModel(
         totalIncomeExpenseData.value =
             TotalIncomeExpenseModel(income, expense, income - expense)
     }
+
+    fun getLastFiveExpenses() = repository.getLastFiveExpenses()
 }
