@@ -20,6 +20,7 @@ import com.example.expensetracker.ui.home.HomeViewModel
 import com.example.expensetracker.ui.home.HomeViewModelFactory
 import com.example.expensetracker.ui.income.adapter.IncomeListAdapter
 import com.example.expensetracker.ui.utils.dateutils.DateUtils
+import java.util.Locale
 
 class IncomeFragment : Fragment() {
     private var _binding: FragmentIncomeBinding? = null
@@ -75,9 +76,9 @@ class IncomeFragment : Fragment() {
             .observe(viewLifecycleOwner) {
                 var amount: String? = null
                 if (it != null){
-                    amount = "₹${it.toInt()}"
+                    amount = String.format(Locale.US,"₹%.2f",it)
                 }else{
-                    amount = "₹0"
+                    amount = "₹0.00"
                 }
 
                 binding.tvSumOfIncome.text = amount

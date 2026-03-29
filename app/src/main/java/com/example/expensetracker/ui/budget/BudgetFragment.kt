@@ -23,6 +23,7 @@ import com.example.expensetracker.ui.expenses.ExpenseViewModelFactory
 import com.example.expensetracker.ui.utils.dateutils.DateUtils
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
+import java.util.Locale
 
 class BudgetFragment : Fragment() {
     private lateinit var _binding: FragmentBudgetBinding
@@ -92,9 +93,9 @@ class BudgetFragment : Fragment() {
         }
 
         viewModel.totalIncomeExpenseData.observe(viewLifecycleOwner) {
-            binding.tvTotalIncome.text = "₹${it.incomeTotal?.toInt()}"
-            binding.tvTotalExpense.text = "₹${it.expenseTotal?.toInt()}"
-            binding.tvTotalBalance.text = "₹${it.balanceTotal?.toInt()}"
+            binding.tvTotalIncome.text = String.format(Locale.US,"₹%.2f",it.incomeTotal)
+            binding.tvTotalExpense.text = String.format(Locale.US,"₹%.2f",it.expenseTotal)
+            binding.tvTotalBalance.text = String.format(Locale.US,"₹%.2f",it.balanceTotal)
         }
 
     }

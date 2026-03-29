@@ -8,6 +8,7 @@ import com.example.expensetracker.R
 import com.example.expensetracker.data.PrimaryTypes
 import com.example.expensetracker.databinding.LayoutBudgetItemBinding
 import com.example.expensetracker.ui.budget.model.BudgetModel
+import java.util.Locale
 
 class BudgetAdapter(var items: List<BudgetModel>) :
     RecyclerView.Adapter<BudgetAdapter.BudgetViewHolder>() {
@@ -41,9 +42,9 @@ class BudgetAdapter(var items: List<BudgetModel>) :
                 else -> "${item.type} (20%)"
             }
             binding.tvType.text = type
-            binding.tvTotal.text = "₹${item.total.toInt()}"
-            binding.tvSpend.text = "₹${item.spend.toInt()}"
-            binding.tvRemaining.text = "₹${item.remaining.toInt()}"
+            binding.tvTotal.text = String.format(Locale.US,"₹%.2f",item.total)
+            binding.tvSpend.text = String.format(Locale.US,"₹%.2f",item.spend)
+            binding.tvRemaining.text = String.format(Locale.US,"₹%.2f",item.remaining)
             val progress = ((item.spend / item.total) * 100).toInt()
             if (progress<= 50){
                 binding.tvPercentage.setTextColor(ContextCompat.getColor(binding.root.context,R.color.purple_200))

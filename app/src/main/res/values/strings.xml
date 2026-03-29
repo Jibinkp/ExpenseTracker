@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Abija Expense Tracker</string>
+    <string name="app_name">Expense Tracker</string>
     <string name="savings">Savings</string>
     <string name="reminder">Reminder</string>
     <string name="budget_icon">budget icon</string>
