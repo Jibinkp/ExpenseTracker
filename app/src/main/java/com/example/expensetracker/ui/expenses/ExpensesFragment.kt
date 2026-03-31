@@ -1,22 +1,22 @@
 package com.example.expensetracker.ui.expenses
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.expensetracker.R
 import com.example.expensetracker.data.database.ExpenseTrackerDatabase
-import com.example.expensetracker.data.database.ExpenseTrackerDatabase.Companion.invoke
 import com.example.expensetracker.data.database.entities.ExpenseItem
+import com.example.expensetracker.data.database.entities.ExpenseWithCategory
 import com.example.expensetracker.data.database.repository.ExpenseTrackerRepository
 import com.example.expensetracker.databinding.FragmentExpensesBinding
-import com.example.expensetracker.databinding.FragmentHomeBinding
 import com.example.expensetracker.ui.expenses.adapter.ExpenseAdapter
-import com.example.expensetracker.ui.income.IncomeViewModel
-import com.example.expensetracker.ui.income.IncomeViewModelFactory
+import com.example.expensetracker.ui.expenses.adapter.ExpenseAdapterListener
+import com.example.expensetracker.ui.utils.dialogutils.DialogClickListener
+import com.example.expensetracker.ui.utils.dialogutils.DialogUtils
 
 class ExpensesFragment : Fragment() {
     private var _binding: FragmentExpensesBinding? = null
@@ -50,7 +50,7 @@ class ExpensesFragment : Fragment() {
         val repository = ExpenseTrackerRepository(database)
         val factory = ExpenseViewModelFactory(repository)
         viewModel = ViewModelProvider(this, factory)[ExpenseViewModel::class]
-        expenseAdapter = ExpenseAdapter(listOf())
+        expenseAdapter = ExpenseAdapter(listOf(),expenseAdapterListener)
         binding.rvExpense.layoutManager = LinearLayoutManager(requireContext())
         binding.rvExpense.adapter = expenseAdapter
 
@@ -69,6 +69,26 @@ class ExpensesFragment : Fragment() {
                 }).show()
             }
         }
+    }
+
+    private val expenseAdapterListener = object : ExpenseAdapterListener{
+
+        override fun onDeleteClickListener(item: ExpenseWithCategory) {
+            DialogUtils(requireContext()).showDialog("","Do you really want to delete this?",dialogClickListener,item)
+        }
+    }
+
+    private val dialogClickListener = object : DialogClickListener{
+
+        override fun onClickAcceptListener(item: Any?) {
+            val item = item as ExpenseWithCategory
+            Toast.makeText(requireContext(), "${item.expense.amount}", Toast.LENGTH_SHORT).show()
+        }
+
+        override fun onClickDeclineListener() {
+
+        }
+
     }
 
     companion object {

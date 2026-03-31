@@ -11,6 +11,7 @@ import com.example.expensetracker.data.database.entities.ExpenseItem
 import com.example.expensetracker.data.database.entities.ExpenseWithCategory
 import com.example.expensetracker.databinding.LayoutRecentTransactionItemBinding
 import com.example.expensetracker.ui.utils.dateutils.DateUtils
+import java.util.Locale
 
 class RecentTransactionAdapter(
     var items: List<ExpenseWithCategory>
@@ -49,7 +50,7 @@ class RecentTransactionAdapter(
                     Constants.DATE_FORMAT_YYYY_MM_DD,
                     Constants.DATE_FORMAT_MMM_DD_YYYY
                 )
-            val amount = "-₹${item.expense.amount.toInt()}"
+            val amount = String.format(Locale.US,"-₹%.2f",item.expense.amount)
             binding.tvAmount.text = amount
             binding.tvTitle.text = item.category.name
             when (item.category.primaryType) {

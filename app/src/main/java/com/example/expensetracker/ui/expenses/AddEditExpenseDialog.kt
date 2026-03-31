@@ -119,5 +119,9 @@ class AddEditExpenseDialog(
             dismiss()
         }
 
+        binding.imgClose.setOnClickListener {
+            dismiss()
+        }
+
     }
 }

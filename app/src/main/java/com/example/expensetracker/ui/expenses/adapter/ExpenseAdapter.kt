@@ -10,8 +10,10 @@ import com.example.expensetracker.data.PrimaryTypes
 import com.example.expensetracker.data.database.entities.ExpenseWithCategory
 import com.example.expensetracker.databinding.LayoutExpenseItemBinding
 import com.example.expensetracker.ui.utils.dateutils.DateUtils
+import java.util.Locale
 
-class ExpenseAdapter(var items: List<ExpenseWithCategory>) :
+class ExpenseAdapter(var items: List<ExpenseWithCategory>,
+    val expenseAdapterListener: ExpenseAdapterListener) :
     RecyclerView.Adapter<ExpenseAdapter.ExpenseViewHolder>() {
 
 
@@ -44,7 +46,7 @@ class ExpenseAdapter(var items: List<ExpenseWithCategory>) :
                     Constants.DATE_FORMAT_YYYY_MM_DD,
                     Constants.DATE_FORMAT_MMM_DD_YYYY
                 )
-            val amount = "-₹${item.expense.amount.toInt()}"
+            val amount = String.format(Locale.US,"-₹%.2f",item.expense.amount)
             binding.tvAmount.text = amount
             binding.tvTitle.text = item.category.name
             when (item.category.primaryType) {
@@ -91,6 +93,10 @@ class ExpenseAdapter(var items: List<ExpenseWithCategory>) :
                     )
 
                 }
+            }
+
+            binding.imgDelete.setOnClickListener {
+                expenseAdapterListener.onDeleteClickListener(item)
             }
         }
 

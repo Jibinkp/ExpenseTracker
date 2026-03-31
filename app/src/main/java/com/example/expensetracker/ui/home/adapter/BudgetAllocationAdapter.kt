@@ -8,6 +8,7 @@ import com.example.expensetracker.R
 import com.example.expensetracker.data.PrimaryTypes
 import com.example.expensetracker.databinding.LayoutBudgetAllocationItemBinding
 import com.example.expensetracker.ui.budget.model.BudgetModel
+import java.util.Locale
 
 class BudgetAllocationAdapter(
     var items: List<BudgetModel>
@@ -55,10 +56,18 @@ class BudgetAllocationAdapter(
                 }"
             }
             binding.tvType.text = type
-            binding.tvSpend.text =
-                "₹${item.spend.toInt()} ${ContextCompat.getString(binding.root.context, R.string.spend)}"
-            binding.tvRemaining.text =
-                "₹${item.remaining.toInt()} ${ContextCompat.getString(binding.root.context, R.string.left)}"
+            binding.tvSpend.text = String.format(Locale.US,"₹%.2f ${
+                ContextCompat.getString(
+                    binding.root.context,
+                    R.string.spend
+                )
+            }",item.spend)
+            binding.tvRemaining.text = String.format(Locale.US,"₹%.2f ${
+                ContextCompat.getString(
+                    binding.root.context,
+                    R.string.left
+                )
+            }",item.remaining)
             val progress = ((item.spend / item.total) * 100).toInt()
             if (progress<= 50){
                 binding.tvLabel.text = ContextCompat.getString(binding.root.context,R.string.on_track)

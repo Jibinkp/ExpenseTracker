@@ -18,6 +18,7 @@ import com.example.expensetracker.data.PrimaryTypes
 import com.example.expensetracker.data.database.ExpenseTrackerDatabase
 import com.example.expensetracker.data.database.repository.ExpenseTrackerRepository
 import com.example.expensetracker.databinding.FragmentHomeBinding
+import com.example.expensetracker.ui.expenses.ExpensesFragment
 import com.example.expensetracker.ui.home.adapter.BudgetAllocationAdapter
 import com.example.expensetracker.ui.home.adapter.RecentTransactionAdapter
 import com.example.expensetracker.ui.utils.dateutils.DateUtils
@@ -29,6 +30,7 @@ import com.github.mikephil.charting.formatter.PercentFormatter
 import com.github.mikephil.charting.utils.MPPointF
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
+import java.util.Locale
 
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
@@ -77,9 +79,9 @@ class HomeFragment : Fragment() {
             LocalDate.now().format(DateTimeFormatter.ofPattern(DATE_FORMAT_YYYY_MM))
         )
         viewModel.totalIncomeExpenseData.observe(viewLifecycleOwner) {
-            binding.tvIncome.text = "₹${it.incomeTotal?.toInt()}"
-            binding.tvExpense.text = "₹${it.expenseTotal?.toInt()}"
-            binding.tvBalance.text = "₹${it.balanceTotal?.toInt()}"
+            binding.tvIncome.text = String.format(Locale.US,"₹%.2f",it.incomeTotal)
+            binding.tvExpense.text = String.format(Locale.US,"₹%.2f",it.expenseTotal)
+            binding.tvBalance.text = String.format(Locale.US,"₹%.2f",it.balanceTotal)
         }
 
         val recentTransactionAdapter = RecentTransactionAdapter(listOf())
@@ -102,15 +104,18 @@ class HomeFragment : Fragment() {
             for (i in it) {
                 when(i.type){
                     PrimaryTypes.NEEDS ->{
-                        binding.tvTotalSpendOfNeeds.text = "₹${i.spend.toInt()}"
+                        binding.tvTotalSpendOfNeeds.text = String.format(
+                            Locale.US,"₹%.2f", i.spend)
                     }
 
                     PrimaryTypes.WANTS ->{
-                        binding.tvTotalSpendOfWants.text = "₹${i.spend.toInt()}"
+                        binding.tvTotalSpendOfWants.text = String.format(
+                                Locale.US,"₹%.2f", i.spend)
                     }
 
                     PrimaryTypes.SAVINGS ->{
-                        binding.tvTotalSpendOfSavings.text = "₹${i.spend.toInt()}"
+                        binding.tvTotalSpendOfSavings.text = String.format(
+                                Locale.US,"₹%.2f", i.spend)
                     }
                 }
                 val percent = if (i.total != 0.0) ((i.spend / i.total) * 100).toFloat() else 0f
@@ -124,7 +129,10 @@ class HomeFragment : Fragment() {
         )
 
         binding.tvViewAll.setOnClickListener {
-
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.container, ExpensesFragment())
+                .addToBackStack(null)
+                .commit()
         }
 
     }

@@ -8,6 +8,7 @@ import com.example.expensetracker.data.Constants.DATE_FORMAT_YYYY_MM_DD
 import com.example.expensetracker.data.database.entities.IncomeItem
 import com.example.expensetracker.databinding.LayoutIncomeItemBinding
 import com.example.expensetracker.ui.utils.dateutils.DateUtils
+import java.util.Locale
 
 class IncomeListAdapter(var items: List<IncomeItem>) :
     RecyclerView.Adapter<IncomeListAdapter.IncomeViewHolder>() {
@@ -38,7 +39,7 @@ class IncomeListAdapter(var items: List<IncomeItem>) :
 
         fun bind(item: IncomeItem) {
             binding.txtIncomeTitle.text = item.source
-            val amount = "+₹${item.amount.toInt()}"
+            val amount = String.format(Locale.US,"+₹%.2f",item.amount)
             binding.txtIncomeAmount.text = amount
             binding.txtDate.text = DateUtils.convertDateToOtherFormat(item.date,DATE_FORMAT_YYYY_MM_DD,DATE_FORMAT_MMM_DD_YYYY)
         }
